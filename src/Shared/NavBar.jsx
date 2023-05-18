@@ -41,8 +41,8 @@ const NavBar = () => {
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        
+                        <li></li>
                     </ul>
                 </div>
             </div>
