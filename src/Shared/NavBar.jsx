@@ -1,6 +1,18 @@
-import {  NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
+    const { user ,logOut} = useContext(AuthContext)
+    console.log
+    const handleLogOut=()=>{
+        logOut()
+        .then(()=>{})
+        .then(err=>{
+            console.log(err)
+        })
+    }
     return (
         <div className="navbar flex flex-col md:flex-row  justify-between bg-base-300">
             <div className="">
@@ -9,7 +21,7 @@ const NavBar = () => {
             <div className="flex flex-col md:flex-row gap-5" >
                 <NavLink
                     to="/"
-                    className={({ isActive}) =>
+                    className={({ isActive }) =>
                         isActive ? "text-blue-500 font-bold" : "font-bold"
                     }
                 >
@@ -17,13 +29,13 @@ const NavBar = () => {
                 </NavLink>
                 <NavLink
                     to="/blog"
-                    className={({ isActive}) =>
+                    className={({ isActive }) =>
                         isActive ? "text-blue-500 font-bold" : " font-bold"
                     }
                 >
                     blog
                 </NavLink>
-                
+
             </div>
 
             <div className="flex-none gap-2">
@@ -31,18 +43,20 @@ const NavBar = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            {user ? <img title={user?.displayName} src={user?.photoURL} /> : <FaUserCircle className="w-[40px] h-full " /> }
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <li>{user && <>Email : {user?.email}</>}</li>
                         <li>
-                            <a className="justify-between">
+                            <Link className="justify-between">
                                 Profile
-                                <span className="badge">New</span>
-                            </a>
+                            </Link>
                         </li>
-                        
-                        <li></li>
+
+                        <li>{
+                            !user ? <li><Link to='/login'>login</Link></li> : <li onClick={handleLogOut} >LogOut</li>
+                        }</li>
                     </ul>
                 </div>
             </div>
