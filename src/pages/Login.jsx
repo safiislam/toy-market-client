@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
-    const { login, googleSignIn, user } = useContext(AuthContext)
+    const { login, googleSignIn } = useContext(AuthContext)
     const [show, setShow] = useState(false)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();

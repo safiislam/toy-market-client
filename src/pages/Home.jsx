@@ -1,9 +1,12 @@
+import ImageGellary from "../Shared/ImageGellary";
+import Slider from "../Shared/Slider";
 
 
 const Home = () => {
     return (
         <div>
-            <p>home is comming</p>
+           <Slider />
+          <ImageGellary />
         </div>
     );
 };
