@@ -1,5 +1,6 @@
 import ImageGellary from "../Shared/ImageGellary";
 import Slider from "../Shared/Slider";
+import ToyTab from "../Shared/ToyTab";
 
 
 const Home = () => {
@@ -7,6 +8,9 @@ const Home = () => {
         <div>
            <Slider />
           <ImageGellary />
+          <div className="my-10 h-96">
+          <ToyTab />
+          </div>
         </div>
     );
 };
