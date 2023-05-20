@@ -6,34 +6,43 @@ import Registaion from "../pages/Registaion";
 import Blog from "../pages/Blog";
 import AddToys from "../pages/AddToys";
 import MyToys from "../pages/MyToys";
+import UpdateToy from "../pages/UpdateToy";
+// import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
-        path:'/',
+        path: '/',
         element: <MainLayout />,
-        children:[
+        children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home />
             },
             {
-                path:'/login',
-                element:<Login /> 
+                path: '/login',
+                element: <Login />
             },
             {
-                path:'/register',
+                path: '/register',
                 element: <Registaion />
             },
             {
-                path:'/blog',
+                path: '/blog',
                 element: <Blog />
-            },{
-                path:'/addToy',
+            }, {
+                path: '/addToy',
                 element: <AddToys />
             },
             {
-                path:'/myToy',
+                path: '/myToy',
+                // element: <PrivetRoute><MyToys /></PrivetRoute>,
                 element:<MyToys />
+
+            },
+            {
+                path:'/update/:id',
+                element: <UpdateToy />,
+                loader:({params})=> fetch(`http://localhost:5000/toy/${params.id}`)
             }
         ]
     }

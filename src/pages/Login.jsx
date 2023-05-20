@@ -10,7 +10,7 @@ const Login = () => {
     const { login, googleSignIn } = useContext(AuthContext)
     const [show, setShow] = useState(false)
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const email = data.email
         const password = data.password
@@ -27,7 +27,7 @@ const Login = () => {
             })
     }
 
-    console.log(watch("example"));
+    
     return (
         <div className="h-screen w-full flex items-center justify-center text-white">
             <form className="border flex flex-col rounded-lg bg-black h-[55%] space-y-4 p-8  w-[40%]  mx-auto" onSubmit={handleSubmit(onSubmit)}>

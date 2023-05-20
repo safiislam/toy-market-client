@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Registaion = () => {
     const { registaion, setName, googleSignIn } = useContext(AuthContext)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const email = data.email
         const password = data.password
@@ -35,7 +35,7 @@ const Registaion = () => {
                 console.log(err)
             })
     }
-    console.log(watch("example"));
+    
     return (
         <div className="h-screen w-full flex items-center justify-center text-white">
             <form className="border flex flex-col rounded-lg bg-black h-[80%] space-y-4 p-8  w-[40%]  mx-auto" onSubmit={handleSubmit(onSubmit)}>
