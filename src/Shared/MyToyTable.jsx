@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const MyToyTable = ({ toy, index }) => {
     const { _id, name, price, sellerEmail, sellerName, quantity, rating } = toy
+    
     console.log(toy)
     return (
         <tr>
