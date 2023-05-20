@@ -24,6 +24,7 @@ const MyToys = () => {
                             <th> Toy Name</th>
                             <th>Seller name && email </th>
                             <th>Quantity && Ragting</th>
+                            <th>SubCategory</th>
                             <th>price</th>
                             <th></th>
                         </tr>
@@ -31,7 +32,7 @@ const MyToys = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            myToys?.map((toy ,index)=> <MyToyTable key={toy._id} index={index} toy={toy} />)
+                            myToys?.map((toy ,index)=> <MyToyTable key={toy._id} handleDeleteToy={handleDeleteToy} index={index} toy={toy} />)
                         }
                     </tbody>
                 </table>

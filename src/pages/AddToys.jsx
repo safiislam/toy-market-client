@@ -1,25 +1,37 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from './../Provider/AuthProvider';
+import CreatableSelect from "react-select/creatable";
+import { useState } from "react";
+
+const options = [
+    { value: 'sports car', label: 'sports car' },
+    { value: 'truck', label: 'truck' },
+    { value: 'regular car', label: 'regular car' },
+];
+
 
 const AddToys = () => {
-    const {user} = useContext(AuthContext)
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const { user } = useContext(AuthContext)
     console.log(user)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
+        data.subCategory = selectedOption?.value
         console.log(data)
-        fetch('http://localhost:5000/toy',{
-            method:'POST',
-            headers:{
+        fetch('http://localhost:5000/toy', {
+            method: 'POST',
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         })
-        .then(res=> res.json())
-        .then(data =>{
-            console.log(data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
     };
     console.log(watch("example"));
     return (
@@ -36,12 +48,16 @@ const AddToys = () => {
                 <label >Seller Email</label>
                 <input type="text" className="outline-none border-2 border-black rounded h-10 pl-2 " placeholder="" defaultValue={user?.email} {...register("sellerEmail")} />
                 <label >Sub-category</label>
-                <input type="text" className="outline-none border-2 border-black rounded h-10 pl-2 " placeholder=""  {...register("subCategory")} />
+                <CreatableSelect
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                />
 
                 <div className="mt-2 w-full flex justify-center flex-col gap-5 md:flex-row">
                     <div className="w-full md:w-1/2">
                         <label >Price</label>
-                        <input type="text" className="outline-none border-2 border-black rounded h-10 w-full  pl-2 "  placeholder="Price" {...register("price")} />
+                        <input type="text" className="outline-none border-2 border-black rounded h-10 w-full  pl-2 " placeholder="Price" {...register("price")} />
 
                     </div>
                     <div className="w-full md:w-1/2">
