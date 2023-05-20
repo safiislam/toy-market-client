@@ -30,7 +30,7 @@ const ToyTab = () => {
         <div>
             <p className='text-center font-bold text-xl md:text-5xl py-8'>Shop by category</p>
             <Tabs selectedIndex={activeTab} onSelect={handleTabSelect}>
-                <TabList className="grid grid-cols-1 md:grid-cols-3">
+                <TabList className="grid grid-cols-1 gap-4 md:grid-cols-3">
                     {subCategories.map((category, index) => (
                         <Tab
                             key={index}
