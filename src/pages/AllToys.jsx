@@ -7,7 +7,7 @@ const AllToys = () => {
     console.log(allToy)
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mx-3">
                 <table className="table table-zebra w-full">
                     {/* head */}
                     <thead>
