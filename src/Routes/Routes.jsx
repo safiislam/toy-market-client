@@ -46,18 +46,18 @@ const router = createBrowserRouter([
             },
             {
                 path:'/allToy',
-                element: <PrivetRoute><AllToys /></PrivetRoute>,
-                loader : ()=> fetch('https://toy-market-server-kappa.vercel.app/alltoy')
+                element: <PrivetRoute><AllToys/></PrivetRoute>,
+                loader : ()=> fetch('https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/alltoy')
             },
             {
                 path:'detail/:id',
                 element:<PrivetRoute> <ViewDetail /></PrivetRoute>,
-                loader: ({params})=> fetch(`https://toy-market-server-kappa.vercel.app/toy/${params.id}`)
+                loader: ({params})=> fetch(`https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/toy/${params.id}`)
             },
             {
                 path:'/update/:id',
                 element:<PrivetRoute> <UpdateToy /></PrivetRoute>,
-                loader:({params})=> fetch(`https://toy-market-server-kappa.vercel.app/toy/${params.id}`)
+                loader:({params})=> fetch(`https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/toy/${params.id}`)
             }
         ]
     }

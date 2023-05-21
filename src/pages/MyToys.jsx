@@ -33,7 +33,7 @@ const MyToys = () => {
     }
 
 
-    const url = `https://toy-market-server-kappa.vercel.app/toy?email=${user?.email}`
+    const url = `https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/toy?email=${user?.email}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -56,7 +56,7 @@ const MyToys = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                const url = `https://toy-market-server-kappa.vercel.app/${id}`
+                const url = `https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/${id}`
                 fetch(url, {
                     method: 'DELETE',
 

@@ -22,7 +22,7 @@ const UpdateToy = () => {
         data.subCategory = selectedOption?.value
         console.log(data)
 
-        fetch(`https://toy-market-server-kappa.vercel.app/${_id}`, {
+        fetch(`https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/${_id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
