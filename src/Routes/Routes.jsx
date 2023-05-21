@@ -7,6 +7,7 @@ import Blog from "../pages/Blog";
 import AddToys from "../pages/AddToys";
 import MyToys from "../pages/MyToys";
 import UpdateToy from "../pages/UpdateToy";
+import AllToys from "../pages/AllToys";
 // import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
                 // element: <PrivetRoute><MyToys /></PrivetRoute>,
                 element:<MyToys />
 
+            },
+            {
+                path:'/allToy',
+                element: <AllToys />,
+                loader : ()=> fetch('http://localhost:5000/alltoy')
             },
             {
                 path:'/update/:id',
