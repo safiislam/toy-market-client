@@ -4,12 +4,34 @@ import { AuthContext } from "../Provider/AuthProvider";
 import MyToyTable from "../Shared/MyToyTable";
 
 import Swal from "sweetalert2";
+import CreatableSelect from "react-select/creatable";
 
+const options = [
+    { value: 'sports car', label: 'sports car' },
+    { value: 'truck', label: 'truck' },
+    { value: 'regular car', label: 'regular car' },
+    
+];
 
 const MyToys = () => {
+    
     const { user } = useContext(AuthContext)
     const [myToys, setMyToys] = useState([])
-    console.log(myToys)
+    const [sort, setShort] = useState(...myToys)
+  
+    const handleShort = (event) => {
+        const text = event.value
+        
+        if (text) {
+            const result = myToys.filter(cata => cata.subCategory == text)
+            setShort(result)
+        }
+        // else{ 
+        //     setShort(myToys)
+        // }
+    }
+
+
     const url = `http://localhost:5000/toy?email=${user?.email}`
     useEffect(() => {
         fetch(url)
@@ -44,7 +66,7 @@ const MyToys = () => {
                                 'Your file has been deleted.',
                                 'success'
                             )
-                            const remaining = myToys.filter( toy => toy._id !== id );
+                            const remaining = myToys.filter(toy => toy._id !== id);
                             setMyToys(remaining)
                         }
                     })
@@ -54,6 +76,18 @@ const MyToys = () => {
 
     return (
         <div>
+            <div>
+                <CreatableSelect
+
+                    defaultValue=''
+                    
+                    onChange={handleShort}
+
+                    options={options}
+                    name="input"
+                    className="w-96 mx-auto"
+                />
+            </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     {/* head */}
@@ -71,7 +105,7 @@ const MyToys = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            myToys?.map((toy, index) => < MyToyTable key={toy._id} handleDeleteToy={handleDeleteToy} index={index} toy={toy} />)
+                            sort?.map((toy, index) => < MyToyTable key={toy._id} handleDeleteToy={handleDeleteToy} index={index} toy={toy} />)
                         }
                     </tbody>
                 </table>

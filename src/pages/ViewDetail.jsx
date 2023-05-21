@@ -1,11 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 
+
+
 const ViewDetail = () => {
+    
     const toy = useLoaderData()
     const {  name, price, sellerEmail, sellerName, quantity, rating, subCategory,photoUrl } = toy
     console.log(toy)
     return (
         <div>
+            
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={photoUrl} className="max-w-sm rounded-lg shadow-2xl" />

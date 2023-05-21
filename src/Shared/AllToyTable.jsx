@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const AllToyTable = ({ index, toy }) => {
-    const { _id, name, price, sellerEmail, sellerName, quantity, rating, subCategory } = toy
+    const { _id, name, price,  sellerName, quantity, subCategory } = toy
     return (
         <tr>
             <th>{index + 1}</th>
