@@ -10,25 +10,26 @@ const options = [
     { value: 'sports car', label: 'sports car' },
     { value: 'truck', label: 'truck' },
     { value: 'regular car', label: 'regular car' },
-    
+
 ];
 
 const MyToys = () => {
-    
+
     const { user } = useContext(AuthContext)
     const [myToys, setMyToys] = useState([])
-    const [sort, setShort] = useState(...myToys)
-  
+    const [sort, setShort] = useState(myToys)
+
     const handleShort = (event) => {
-        const text = event.value
-        
-        if (text) {
+
+
+        if (event) {
+            const text = event.value
             const result = myToys.filter(cata => cata.subCategory == text)
             setShort(result)
         }
-        // else{ 
-        //     setShort(myToys)
-        // }
+        else {
+            setShort(myToys)
+        }
     }
 
 
@@ -36,7 +37,10 @@ const MyToys = () => {
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
-            .then(data => setMyToys(data))
+            .then(data => {
+                setShort(data)
+                setMyToys(data)
+            })
     }, [url])
 
     const handleDeleteToy = (id) => {
@@ -80,7 +84,7 @@ const MyToys = () => {
                 <CreatableSelect
 
                     defaultValue=''
-                    
+
                     onChange={handleShort}
 
                     options={options}
