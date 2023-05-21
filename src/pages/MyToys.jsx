@@ -1,6 +1,9 @@
+/* eslint-disable no-undef */
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import MyToyTable from "../Shared/MyToyTable";
+
+import Swal from "sweetalert2";
 
 
 const MyToys = () => {
@@ -13,6 +16,42 @@ const MyToys = () => {
             .then(res => res.json())
             .then(data => setMyToys(data))
     }, [url])
+
+    const handleDeleteToy = (id) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                const url = `http://localhost:5000/toy/${id}`
+                fetch(url, {
+                    method: 'DELETE',
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remaining = myToys.filter( toy => toy._id !== id );
+                            setMyToys(remaining)
+                        }
+                    })
+            }
+        })
+    }
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -32,7 +71,7 @@ const MyToys = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            myToys?.map((toy ,index)=> <MyToyTable key={toy._id} handleDeleteToy={handleDeleteToy} index={index} toy={toy} />)
+                            myToys?.map((toy, index) => < MyToyTable key={toy._id} handleDeleteToy={handleDeleteToy} index={index} toy={toy} />)
                         }
                     </tbody>
                 </table>
