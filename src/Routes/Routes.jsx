@@ -9,12 +9,15 @@ import MyToys from "../pages/MyToys";
 import UpdateToy from "../pages/UpdateToy";
 import AllToys from "../pages/AllToys";
 import ViewDetail from "../pages/ViewDetail";
+import PrivetRoute from "./PrivetRoute";
+import ErrorPage from "../pages/ErrorPage";
 // import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement:<ErrorPage /> ,
         children: [
             {
                 path: '/',
@@ -33,28 +36,28 @@ const router = createBrowserRouter([
                 element: <Blog />
             }, {
                 path: '/addToy',
-                element: <AddToys />
+                element: <PrivetRoute> <AddToys /></PrivetRoute>
             },
             {
                 path: '/myToy',
-                // element: <PrivetRoute><MyToys /></PrivetRoute>,
-                element:<MyToys />
+                element: <PrivetRoute><MyToys /></PrivetRoute>,
+                // element:<MyToys />
 
             },
             {
                 path:'/allToy',
-                element: <AllToys />,
-                loader : ()=> fetch('http://localhost:5000/alltoy')
+                element: <PrivetRoute><AllToys /></PrivetRoute>,
+                loader : ()=> fetch('https://toy-market-server-kappa.vercel.app/alltoy')
             },
             {
                 path:'detail/:id',
-                element: <ViewDetail />,
-                loader: ({params})=> fetch(`http://localhost:5000/toy/${params.id}`)
+                element:<PrivetRoute> <ViewDetail /></PrivetRoute>,
+                loader: ({params})=> fetch(`https://toy-market-server-kappa.vercel.app/toy/${params.id}`)
             },
             {
                 path:'/update/:id',
-                element: <UpdateToy />,
-                loader:({params})=> fetch(`http://localhost:5000/toy/${params.id}`)
+                element:<PrivetRoute> <UpdateToy /></PrivetRoute>,
+                loader:({params})=> fetch(`https://toy-market-server-kappa.vercel.app/toy/${params.id}`)
             }
         ]
     }

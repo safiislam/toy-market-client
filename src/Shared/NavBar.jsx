@@ -16,7 +16,8 @@ const NavBar = () => {
     return (
         <div className="navbar flex flex-col md:flex-row  justify-between bg-base-300">
             <div className="">
-                <a className="btn btn-ghost normal-case text-xl">Safi islam</a>
+                <a className="btn btn-ghost normal-case text-xl">ToyMaker</a>
+                
             </div>
             <div className="flex flex-col md:flex-row gap-5" >
                 <NavLink

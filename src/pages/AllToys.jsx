@@ -10,7 +10,7 @@ const AllToys = () => {
     const handleSearch =(event)=>{
         
         const text = event.target.value
-        fetch(`http://localhost:5000/alltoy/${text}`)
+        fetch(`https://toy-market-server-kappa.vercel.app/${text}`)
         .then(res=> res.json())
         .then(data =>setToyes(data) )
 

@@ -21,7 +21,7 @@ const AddToys = () => {
     const onSubmit = data => {
         data.subCategory = selectedOption?.value
         console.log(data)
-        fetch('http://localhost:5000/toy', {
+        fetch('https://toy-market-server-kappa.vercel.app/toy', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

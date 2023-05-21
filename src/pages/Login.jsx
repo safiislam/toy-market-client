@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
@@ -9,32 +9,40 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
     const { login, googleSignIn } = useContext(AuthContext)
     const [show, setShow] = useState(false)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const email = data.email
         const password = data.password
         login(email, password)
+        .then(result=>{
+            const user = result.user
+            navigate(from, { replace: true });
+        })
     };
     const handleLoginWithGoogle = () => {
         googleSignIn()
             .then(result => {
                 // eslint-disable-next-line no-unused-vars
                 const user = result.user
+                navigate(from, { replace: true });
             })
             .then(err => {
                 console.log(err)
             })
     }
 
-    
+
     return (
         <div className="h-screen w-full flex items-center justify-center text-white">
             <form className="border flex flex-col rounded-lg bg-black h-[55%] space-y-4 p-8  w-[40%]  mx-auto" onSubmit={handleSubmit(onSubmit)}>
                 <p className="text-center text-xl font-bold">login</p>
                 <input type="text" className="border-b-2 h-10 bg-black outline-none border-white " placeholder="email" {...register("email")} />
                 <div className="flex items-center" >
-                    <input type={show ?'text': 'password' } className=" flex-grow border-b-2 h-10 outline-none border-white bg-black  " placeholder="Password" {...register("password")} />
+                    <input type={show ? 'text' : 'password'} className=" flex-grow border-b-2 h-10 outline-none border-white bg-black  " placeholder="Password" {...register("password")} />
                     <p onClick={() => setShow(!show)}>{
                         show ? <FaEyeSlash /> : <FaEye />
                     }</p>

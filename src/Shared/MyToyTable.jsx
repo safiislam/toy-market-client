@@ -28,7 +28,7 @@ const MyToyTable = ({ toy, index ,handleDeleteToy }) => {
                     <button onClick={()=> handleDeleteToy(_id)} className="border-2 border-black rounded-e-full px-2" >Delete</button>
                 </div>
             </td>
-        </tr>
+        </tr>       
     );
 };
 
