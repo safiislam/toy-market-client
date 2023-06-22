@@ -29,7 +29,7 @@ const NavBar = () => {
                     Home
                 </NavLink>
                 <NavLink
-                    to="/allToy"
+                    to="/allToys"
                     className={({ isActive }) =>
                         isActive ? "text-blue-500 font-bold" : "font-bold"
                     }

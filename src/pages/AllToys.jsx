@@ -5,13 +5,14 @@ import { useState } from "react";
 
 const AllToys = () => {
     const allToy = useLoaderData()
+    
     console.log(allToy)
     const [toyes,setToyes] = useState(allToy)
     console.log(allToy)
     const handleSearch =(event)=>{
         
         const text = event.target.value
-        fetch(`https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/${text}`)
+        fetch(`https://toy-market-server-gules.vercel.app/alltoy/${text}`)
         .then(res=> res.json())
         .then(data =>setToyes(data) )
 

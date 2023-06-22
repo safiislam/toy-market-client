@@ -33,7 +33,7 @@ const MyToys = () => {
     }
 
 
-    const url = `https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/toy?email=${user?.email}`
+    const url = `https://toy-market-server-gules.vercel.app/toy?email=${user?.email}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -55,8 +55,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-
-                const url = `https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/${id}`
+                const url = `https://toy-market-server-gules.vercel.app/toy/${id}`
                 fetch(url, {
                     method: 'DELETE',
 

@@ -21,7 +21,7 @@ const AddToys = () => {
     const onSubmit = data => {
         data.subCategory = selectedOption?.value
         console.log(data)
-        fetch('https://b7a11-toy-marketplace-server-side-safiislam.vercel.app/toy', {
+        fetch('https://toy-market-server-gules.vercel.app/toy', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
